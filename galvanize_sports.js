@@ -8,22 +8,20 @@ module.exports = {
     inventory: data.inventory,
     shoppingCart: data.shoppingCart,
     addItem: function(itemId, quantity){
-      for (var j = 0; j < shoppingCart.length; j++) {
-        if (shoppingCart[j].itemId === itemId) {
-            for (var i = 0; i < inventory.length; i++) {
-              if(inventory[i].id === itemId){
-                if (inventory[i].quantityAvailable >= quantity) {
+      for (var i = 0; i < inventory.length; i++) {
+        if (inventory[i].id === itemId) {
+          for (var j = 0; j < shoppingCart.length; j++) {
+            if (shoppingCart[j].itemId === itemId) {
+              if (inventory[i].quantityAvailable >= quantity) {
                   shoppingCart[j].quantity += quantity;
                   inventory[i].quantityAvailable -= quantity;
-                } else {
-                    shoppingCart[j].quantity += inventory[i].quantityAvailable
-                    inventory[i].quantityAvailable=0
-                }
+              }else{
+                shoppingCart[j].quantity += inventory[i].quantityAvailable;
+                inventory[i].quantityAvailable = 0;
+              }
             }
-
           }
         }
-
       }
     },
 
