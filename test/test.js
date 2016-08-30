@@ -35,7 +35,7 @@ describe("Functions should work", function() {
     });
   })
   describe("#removeItem", function () {
-    xit('should remove items from the cart', function () {
+    it('should remove items from the cart', function () {
       initializeData();
       galvanizeSports.removeItem(10, 1);
       assert.equal(galvanizeSports.shoppingCart[0].quantity, 1, "Item 1 should be removed from the shopping cart");

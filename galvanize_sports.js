@@ -24,16 +24,22 @@ module.exports = {
         }
       }
     },
-
-
-
-
-
-
-
-
     removeItem: function(itemId, quantity){
-        // Your code here!
+      for (var i = 0; i < inventory.length; i++) {
+        if (inventory[i].id === itemId) {
+          for (var j = 0; j < shoppingCart.length; j++) {
+            if (shoppingCart[j].itemId === itemId) {
+              if (shoppingCart[i].quantity >= quantity) {
+                shoppingCart[j].quantity -= quantity;
+                inventory[i].quantityAvailable += quantity;
+              }else{
+                inventory[i].quantityAvailable += shoppingCart[j].quantity
+                shoppingCart[j].quantity = 0;
+              }
+            }
+          }
+        }
+      }
     },
     getCheckoutSubtotal: function(){
         var checkoutSubtotal = 0.00;
